@@ -3,8 +3,8 @@ Idea came from Robert David Graham's implementation */
 
 function Game() 
 {
-    /* We have three doors that may have coal behind them */
-    this.doors = ["coal", "coal", "coal"];
+    /* We have three doors that may have COAL behind them */
+    this.doors = ["COAL", "COAL", "COAL"];
 
     /* This function will choose one of the doors at random, using the 
      * built-in JavaScript random function. */
@@ -13,7 +13,7 @@ function Game()
     };
 
     /* We initialize this game with a random door having GOLD instead
-     * of a coal */
+     * of a COAL */
     this.doors[this.pick_random()] = "GOLD";
 
 
@@ -56,28 +56,28 @@ function Game()
 
 /**
  * Simulate playing the game once, returning the result of game
- * (either 'coal' or 'GOLD'). The variable 'do_change' indicates
+ * (either 'COAL' or 'GOLD'). The variable 'do_change' indicates
  * whether the customer is going to always swap their choice (true)
- * or wethey they will stand pat with their first choice (false).
+ * or whether they will keep with their first choice (false).
  */
 function RunSimulation(do_change)
 {
     /* Craete a new game instance with GOLD behind one door chosen
-     * at random, and a coal behind the rest */
+     * at random, and a COAL behind the rest */
     var game = new Game();
 
     /* The contestant picks a door at random */
     var choice = game.pick_random();
 
     /* Monty Hall opens another door, that is not the contestent's
-     * door, showing a coal */
+     * door, showing a COAL */
     var open = game.open_other(choice);
 
     /* Now the contestant decides whether to change */
     if (do_change)
         choice = game.change_choice(choice, open);
     
-    /* Now return either 'coal' or 'GOLD' */
+    /* Now return either 'COAL' or 'GOLD' */
     return game.doors[choice];
 }
 
@@ -99,5 +99,5 @@ function RunManySimulations(do_change)
     return win / attempts;
 }
 
-console.log("Stand Pat = " + RunManySimulations(false));
+console.log("Keep current door = " + RunManySimulations(false));
 console.log("Swap Choice = " + RunManySimulations(true));
